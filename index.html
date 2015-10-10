@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+
+    <title>Leap Suite</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+  </head>
+
+  <body ng-app="leapSuiteApp">
+
+    <div ng-include="'app/layout/shell.html'"></div>
+
+    <!-- third party and lib js -->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+      <script type='application/javascript' src='lib/fastclick.js'></script>
+
+    <!-- main module -->
+      <script type='application/javascript' src='app/leapSuiteApp.module.js'></script>
+
+    <!-- layout -->
+    <script type='application/javascript' src='app/layout/layout.module.js'></script>
+    <script type='application/javascript' src='app/layout/shell.js'></script>
+
+  </body>
+</html>
