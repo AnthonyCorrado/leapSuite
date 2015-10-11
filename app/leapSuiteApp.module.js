@@ -6,7 +6,8 @@
     // features
     'leapSuiteApp.layout',
     'leapSuiteApp.leap',
-    'leapSuiteApp.lighting'
+    'leapSuiteApp.lighting',
+    'leapSuiteApp.contacts'
   ]);
 
 })();

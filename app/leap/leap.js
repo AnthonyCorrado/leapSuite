@@ -5,12 +5,14 @@
     .module('leapSuiteApp.leap')
     .controller('Leap', Leap);
 
-    Leap.$inject = ['LightService'];
+    Leap.$inject = ['ContactsService'];
 
-    function Leap(LightService) {
+    function Leap(ContactsService) {
       var vm = this;
 
-      vm.service = LightService.testLights();
+      ContactsService.getAllContacts().then(function(response) {
+        vm.service = response.data;
+      });
       activate();
 
       function activate() {

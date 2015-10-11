@@ -16,7 +16,17 @@
       return service;
 
       function testLights() {
-        return 'this is a service ';
+        return $http.get('http://localhost:3000/users')
+          .then(getUsersComplete)
+          .catch(getUsersFailed);
+
+        function getUsersComplete(response) {
+          return response;
+        }
+
+        function getUsersFailed(error) {
+          console.log(error);
+        }
       };
 
       function getAllLights() {
