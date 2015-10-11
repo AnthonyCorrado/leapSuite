@@ -4,7 +4,9 @@
   angular.module('leapSuiteApp', [
 
     // features
-    'leapSuiteApp.layout'
+    'leapSuiteApp.layout',
+    'leapSuiteApp.leap',
+    'leapSuiteApp.lighting'
   ]);
 
 })();
