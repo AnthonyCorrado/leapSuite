@@ -4,6 +4,8 @@
   angular.module('leapSuiteApp', [
 
     'ui.router',
+    'ngTouch',
+    'angular-carousel',
 
     // features
     'leapSuiteApp.layout',
