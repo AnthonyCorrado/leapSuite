@@ -9,7 +9,8 @@
     'leapSuiteApp.layout',
     'leapSuiteApp.leap',
     'leapSuiteApp.lighting',
-    'leapSuiteApp.contacts'
+    'leapSuiteApp.contacts',
+    'leapSuiteApp.sms'
   ]);
 
 })();

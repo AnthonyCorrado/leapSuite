@@ -1,8 +1,8 @@
-var users = require('../controllers/users');
+var contacts = require('../controllers/contacts');
 var texts = require('../controllers/texts');
 
 module.exports = function(app) {
 
-  app.get('/users', users.index);
+  app.get('/contacts', contacts.index);
   app.post('/sendText', texts.create);
 };

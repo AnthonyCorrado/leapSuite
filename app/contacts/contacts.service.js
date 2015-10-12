@@ -15,7 +15,7 @@
       return service;
 
       function getAllContacts() {
-        return $http.get('http://localhost:3000/users')
+        return $http.get('http://localhost:3000/contacts')
           .then(getContactsComplete)
           .catch(getContactsFailed);
 

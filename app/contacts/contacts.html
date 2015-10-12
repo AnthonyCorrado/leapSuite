@@ -1,0 +1,7 @@
+Contacts List
+<div ng-repeat="contact in vm.contacts">
+  <div ng-click="sendAction(contact)">
+    {{contact.name}}
+    <img ng-src="{{contact.avatar}}" />
+  </div>
+</div>

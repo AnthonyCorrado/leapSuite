@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var User = require('./models/User.js').model;
+var Contact = require('./models/Contact.js').model;
 var db = require('./config').db;
 
 // var jwt = require('./services/jwt.js');
