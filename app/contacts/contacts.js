@@ -10,6 +10,9 @@
     function Contacts() {
       var vm = this;
 
+      vm.cats = 'meow';
+      alert('contact controller');
+
       activate();
       function activate() {
       }

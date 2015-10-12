@@ -10,20 +10,22 @@
 
   <body ng-app="leapSuiteApp">
 
-    <div ng-include="'app/layout/shell.html'"></div>
+    <!-- <div ng-include="'app/layout/shell.html'"></div> -->
+    <div ui-view></div>
 
 
     <!-- third party and lib js -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
     <script type='application/javascript' src='lib/fastclick.js'></script>
     <script type='application/javascript' src='lib/leap-0.6.4.js'></script>
 
     <!-- inject-vendor:js -->
+    <script src='/bower_components/angular-ui-router/release/angular-ui-router.js'></script>
     <script src='/bower_components/angular-leap/build/angular-leap.js'></script>
 
     <!-- main module -->
     <script type='application/javascript' src='app/leapSuiteApp.module.js'></script>
+    <script type='application/javascript' src='app/leapSuiteApp.config.js'></script>
 
     <!-- layout -->
     <script type='application/javascript' src='app/layout/layout.module.js'></script>

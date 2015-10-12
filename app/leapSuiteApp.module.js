@@ -3,6 +3,8 @@
 
   angular.module('leapSuiteApp', [
 
+    'ui.router',
+
     // features
     'leapSuiteApp.layout',
     'leapSuiteApp.leap',
