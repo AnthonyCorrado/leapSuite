@@ -1,5 +1,154 @@
-$color: orange;
+// sass variables ------------
+$base-value: #4D505B;
+$primary-highlight: #16A79D;
+$secondary-highlight: #CF4858;
+$tertiary-highlight: #80628B;
 
-body {
-  background-color : $color;
+$spacing: 20px;
+
+$rounded: 5px;
+
+// mixins --------------------
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+// Usage
+// .article {
+//    @include clearfix();
+// }
+
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+*,
+*:after,
+*:before {
+  @include box-sizing(border-box);
+}
+// ---------------------------
+
+// common sass
+.text-center {
+  text-align: center;
+}
+.title-font {
+  font-family: 'Exo 2', sans-serif;
+}
+.cursive-font {
+  font-family: 'Yesteryear', cursive;
+}
+.font-xlarge {
+  font-size: 40px;
+}
+.font-med {
+  font-size: 24px;
+}
+.margin-top {
+  margin-top: 20px;
+}
+.pad-left-more {
+  padding-left: 16px;
+}
+
+.shadow {
+  -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+  box-shadow: 4px 4px 2px 0px rgba(0,0,0,0.75);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Exo 2', sans-serif;
+  background-color: $base-value;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: $base-value;
+}
+
+.nav-bar {
+  height: 80px;
+  background-color: darken($base-value, 10%);
+  border-top: 2px solid $secondary-highlight;
+  border-bottom: 2px solid $secondary-highlight;
+}
+.bg-image {
+  width: 100%;
+  height: 100%;
+  // background: url('../images/matte.png') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.main-container {
+  margin-left: 40%;
+}
+
+.full-size {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-container {
+  width: 300px;
+  height: 400px;
+}
+
+img {
+  max-width:100%;
+  max-height:100%;
+}
+
+// actions sass
+.action-bar {
+  width: 50%;
+  height: 100px;
+  margin: 0 auto;
+  background-color: $primary-highlight;
+  border: 2px solid $secondary-highlight;
+  border-radius: $rounded;
+}
+.action-list {
+  li {
+    width: 25%;
+    padding-top: 5%;
+    text-align: center;
+  }
+}
+.contacts-container {
+  width: 20%;
+  height: 40%;
+  margin: 0 auto;
+  margin-top: $spacing;
+  background-color: darken($base-value, 10%);
+  border: 2px solid $secondary-highlight;
+  border-radius: $rounded;
+  overflow: hidden;
 }

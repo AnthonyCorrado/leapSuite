@@ -1,9 +1,14 @@
-Contacts List
-<ul rn-carousel class="image">
-<li ng-repeat="contact in vm.contacts">
-  <div ng-click="sendAction(contact)">
-    {{contact.name}}
-    <img ng-src="{{contact.avatar}}" />
+<div ui-view class="margin-top"></div>
+<div class="contacts-container">
+  <div class="carousel-container">
+    <ul rn-carousel class="image full-size">
+    <li ng-repeat="contact in vm.contacts">
+      <div ng-click="sendAction(contact)">
+          {{contact.name}}
+        <img ng-src="{{contact.avatar}}" />
+      </div>
+    </li>
+    </ul>
   </div>
-</li>
-</ul>
+</div>
+

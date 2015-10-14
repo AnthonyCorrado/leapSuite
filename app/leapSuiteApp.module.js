@@ -9,6 +9,8 @@
 
     // features
     'leapSuiteApp.layout',
+    'leapSuiteApp.dashboard',
+    'leapSuiteApp.actions',
     'leapSuiteApp.leap',
     'leapSuiteApp.lighting',
     'leapSuiteApp.contacts',
