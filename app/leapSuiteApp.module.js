@@ -14,7 +14,8 @@
     'leapSuiteApp.leap',
     'leapSuiteApp.lighting',
     'leapSuiteApp.contacts',
-    'leapSuiteApp.sms'
+    'leapSuiteApp.sms',
+    'leapSuiteApp.speech'
   ]);
 
 })();

@@ -16,7 +16,7 @@
         message = "hardcoded value";
         SmsService.createSms(contactObj, message);
       }
-
+      
       activate();
 
       function activate() {

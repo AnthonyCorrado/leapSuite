@@ -7,6 +7,8 @@ $tertiary-highlight: #80628B;
 $spacing: 20px;
 
 $rounded: 5px;
+$rounded-less: 3px;
+$rounded-more: 15px;
 
 // mixins --------------------
 @mixin clearfix() {
@@ -128,7 +130,7 @@ img {
 
 // actions sass
 .action-bar {
-  width: 50%;
+  width: 600px;
   height: 100px;
   margin: 0 auto;
   background-color: $primary-highlight;
@@ -138,17 +140,50 @@ img {
 .action-list {
   li {
     width: 25%;
+    height: 96px;
     padding-top: 5%;
     text-align: center;
   }
+
+  .active-item {
+    color: #CCCCCC;
+    background-color: darken($primary-highlight, 10%);
+  }
 }
 .contacts-container {
-  width: 20%;
-  height: 40%;
+  width: 600px;
+  height: 200px;
   margin: 0 auto;
   margin-top: $spacing;
   background-color: darken($base-value, 10%);
-  border: 2px solid $secondary-highlight;
+  border: 2px solid darken($base-value, 20%);
   border-radius: $rounded;
-  overflow: hidden;
+  overflow: scroll;
+
+  .contacts-box {
+    width: 300%;
+    height: 200px;
+  }
+
+  .image-box {
+    width: 180px;
+    height: 180px;
+    margin-top: 8px;
+    margin-left: 10px;
+    display: inline-block;
+    float: left;
+    padding: 8px;
+    transition:all linear 0.2s;
+  }
+  .active-contact {
+    padding: 0px;
+    border: 5px solid $secondary-highlight;
+    border-radius: $rounded;
+    transition:all linear 0.2s;
+  }
+
+  img {
+    border-radius: $rounded-less;
+    transition:all linear 0.2s;
+  }
 }
