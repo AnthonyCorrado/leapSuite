@@ -4,6 +4,8 @@ $primary-highlight: #16A79D;
 $secondary-highlight: #CF4858;
 $tertiary-highlight: #80628B;
 
+$font-secondary: #CCCCCC;
+
 $spacing: 20px;
 
 $rounded: 5px;
@@ -57,8 +59,15 @@ $rounded-more: 15px;
 .margin-top {
   margin-top: 20px;
 }
+.pad-all {
+  padding: 15px;
+}
 .pad-left-more {
   padding-left: 16px;
+}
+.font-secondary {
+  font-size: 18px;
+  text-align: center;
 }
 
 .shadow {
@@ -149,6 +158,11 @@ img {
     color: #CCCCCC;
     background-color: darken($primary-highlight, 10%);
   }
+}
+.action-message-box {
+  height: 96px;
+  color: #CCCCCC;
+  background-color: darken($primary-highlight, 10%);
 }
 .contacts-container {
   width: 600px;

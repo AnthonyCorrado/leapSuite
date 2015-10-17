@@ -9,6 +9,7 @@
 
     function Actions($scope, ContactsService, SpeechService) {
       var vm = this;
+      vm.mockVoice = "you up to grab a drink for happy hour? If so, let's go grab two for ones"
 
       activate();
 

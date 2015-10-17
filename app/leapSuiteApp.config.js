@@ -21,9 +21,18 @@
       })
       .state('dashboard.contacts.actions', {
         url: '/actions',
-        templateUrl: 'app/actions/actions.html',
-        controller: 'Actions',
-        controllerAs: 'vm'
+        views: {
+          "action-bar": {
+            templateUrl: "app/actions/actions.html",
+            controller: 'Actions',
+            controllerAs: 'vm'
+          },
+          "message-body": {
+            templateUrl: "app/actions/message-body.html",
+            controller: 'Actions',
+            controllerAs: 'vm'
+          }
+        }
       })
       .state('dashboard.contacts.leap', {
         url: '/leap',

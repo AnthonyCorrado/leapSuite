@@ -2,22 +2,22 @@
     'use strict';
 
   angular
-    .module('leapSuiteApp.sms')
-    .factory('SmsService', SmsService);
+    .module('leapSuiteApp.email')
+    .factory('EmailService', EmailService);
 
-    SmsService.$inject = ['$http'];
+    EmailService.$inject = ['$http'];
 
-    function SmsService($http) {
+    function EmailService($http) {
 
       var service = {
-          createSms: createSms
+          createEmail: createEmail
       };
       return service;
 
-      function createSms(request, message) {
+      function createEmail(request, message) {
         var req = {
           method: 'POST',
-          url: 'http://localhost:3000/sendText',
+          url: 'http://localhost:3000/sendEmail',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -27,14 +27,14 @@
           }
         }
         return $http(req)
-          .then(smsSendComplete)
-          .catch(smsSendFailed);
+          .then(emailSendComplete)
+          .catch(emailSendFailed);
 
-        function smsSendComplete(response) {
+        function emailSendComplete(response) {
           return response;
         }
 
-        function smsSendFailed(error) {
+        function emailSendFailed(error) {
           console.log(error);
         }
       };
