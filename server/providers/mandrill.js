@@ -1,8 +1,8 @@
 var mandrill = require('mandrill-api/mandrill');
-var apiKey = require('../config').mail_client_test;
+var apiKey = require('../config').test_mail_client.MANDRILL_KEY; 
 var mandrill_client = new mandrill.Mandrill(apiKey);
 
-exports.sendEmail = function(to, from, content) {
+exports.sendEmail = function(to, from, content, res) {
 
   var fromEmail = from.email,
     fromName = from.name,
@@ -32,9 +32,9 @@ exports.sendEmail = function(to, from, content) {
       "async": async
     },
     function(result) {
-      console.log(result);
-      // res.json(result);
+      res(result);
     }, function(e) {
       console.log('A mandrill error occured: ' + e.name + ' - ' + e.message);
+      return res(e);
   });
 }

@@ -1,28 +1,14 @@
-<!-- <div ui-view class="margin-top"></div>
-<div class="contacts-container">
-  <div class="carousel-container">
-    <ul rn-carousel class="image full-size">
-    <li ng-repeat="contact in vm.contacts">
-      <div ng-click="sendAction(contact)">
-          {{contact.name}}
-        <img ng-src="{{contact.avatar}}" />
-      </div>
-    </li>
-    </ul>
-  </div>
-</div> -->
-
-<div ui-view="action-bar" class="margin-top"></div>
-<div class="contacts-container">
-  <div class="contacts-box">
-    <div ng-repeat="contact in vm.contacts">
-      <div class="image-box" ng-click="$parent.selected = $index;" ng-class="{'active-contact': ($parent.selected == $index)}">
-        <img ng-src="{{contact.avatar}}" />
+<div class="margin-top"></div>
+  <div class="contacts-container">
+    <div class="contacts-box">
+      <div ng-repeat="contact in contacts">
+        <div class="image-box" ng-click="$parent.selected = $index;" ng-class="{'active-contact': ($parent.selected == $index)}">
+          <!-- <img ng-src="{{contact.avatar}}" /> -->{{contact.name}}
+        </div>
       </div>
     </div>
   </div>
 </div>
-<div ui-view="message-body" class="margin-top"></div>
 
 
 

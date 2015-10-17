@@ -13,5 +13,10 @@ exports.create = function (req, res, next) {
     "subject": req.body.subject,
     "payload": req.body.payload
   }
-  emailProvider.sendEmail(to, from, content);
+  emailProvider.sendEmail(to, from, content, function(err, data) {
+    if (err) {
+      return console.log('err in controller', err);
+    }
+    console.log('success in controller', data);
+  });
 }

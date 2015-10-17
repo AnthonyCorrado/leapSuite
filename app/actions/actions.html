@@ -1,7 +1,9 @@
-<div class="action-bar shadow">
-  <ul class="action-list font-med">
-    <li ng-repeat="actions in vm.actionOptions" ng-click="$parent.selectedItem = $index;" ng-class="{'active-item': ($parent.selectedItem == $index)}">
-      {{actions}}
-    </li>
-  </ul>
+<div class="margin-top"></div>
+  <div class="action-bar shadow">
+    <ul class="action-list font-med">
+      <li ng-repeat="action in actions" ng-click="$parent.selectedItem = $index;" ng-class="{'active-item': ($parent.selectedItem == $index)}">
+        {{action}}
+      </li>
+    </ul>
+  </div>
 </div>

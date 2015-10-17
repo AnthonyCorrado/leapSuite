@@ -5,9 +5,9 @@
     .module('leapSuiteApp.contacts')
     .controller('Contacts', Contacts);
 
-    Contacts.$inject = ['$scope', 'ContactsService', 'SmsService'];
+    Contacts.$inject = ['$scope', 'SmsService'];
 
-    function Contacts($scope, ContactsService, SmsService) {
+    function Contacts($scope, SmsService) {
       var vm = this;
       vm.contacts = [];
 
@@ -20,9 +20,6 @@
       activate();
 
       function activate() {
-        return ContactsService.getAllContacts().then(function(response) {
-          vm.contacts = response.data.contacts;
-        })
       }
     }
 })();

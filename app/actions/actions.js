@@ -5,16 +5,14 @@
     .module('leapSuiteApp.actions')
     .controller('Actions', Actions);
 
-    Actions.$inject = ['$scope', 'ContactsService', 'SpeechService'];
+    Actions.$inject = ['$scope', 'SpeechService'];
 
-    function Actions($scope, ContactsService, SpeechService) {
+    function Actions($scope, SpeechService) {
       var vm = this;
-      vm.mockVoice = "you up to grab a drink for happy hour? If so, let's go grab two for ones"
 
       activate();
 
       function activate() {
-        vm.actionOptions = ['TEXT', 'EMAIL', 'SLACK', 'OTHER'];
         SpeechService.startRecognizer();
       };
 
