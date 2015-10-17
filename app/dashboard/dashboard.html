@@ -1,5 +1,6 @@
-<div messenger-actions actions="vm.actions"></div>
-<div messenger-contacts contacts="vm.contacts"></div>
-<div messenger-message message="vm.message"></div>
+<div messenger-actions actions="vm.actions" select-action="vm.selectedAction(value)"></div>
+<div messenger-contacts contacts="vm.contacts" select-contact="vm.selectedContact(value)"></div>
+<div messenger-message message="vm.message" message-body="vm.hasMessageBody(value)"></div>
+<button ng-click="vm.sendMessage()">Temp Submit</button>
 <!-- Contacts{{vm.contacts}} -->
 <!-- <div ui-view class="bg-image"></div> -->

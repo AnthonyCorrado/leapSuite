@@ -2,7 +2,7 @@
   <div class="contacts-container">
     <div class="contacts-box">
       <div ng-repeat="contact in contacts">
-        <div class="image-box" ng-click="$parent.selected = $index;" ng-class="{'active-contact': ($parent.selected == $index)}">
+        <div class="image-box" ng-click="selectContact({value: contact}); $parent.selected = $index;" ng-class="{'active-contact': ($parent.selected == $index)}">
           <!-- <img ng-src="{{contact.avatar}}" /> -->{{contact.name}}
         </div>
       </div>

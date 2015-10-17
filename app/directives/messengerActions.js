@@ -10,7 +10,8 @@
       
       var directive = {
         scope: {
-          'actions': '='
+          actions: '=',
+          selectAction: '&'
         },
         restrict: 'A',
         templateUrl: 'app/actions/actions.html'

@@ -10,7 +10,8 @@
       
       var directive = {
         scope: {
-          'message': '='
+          message: '=',
+          messageBody: '&'
         },
         restrict: 'A',
         templateUrl: 'app/message/message.html'

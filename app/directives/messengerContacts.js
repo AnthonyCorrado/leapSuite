@@ -10,7 +10,8 @@
       
       var directive = {
         scope: {
-          'contacts': '='
+          contacts: '=',
+          selectContact: '&'
         },
         restrict: 'A',
         templateUrl: 'app/contacts/contacts.html'
