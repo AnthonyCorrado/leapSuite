@@ -7,3 +7,4 @@ public/
 # server side
 server/node_modules
 server/config.js
+server/mock_data

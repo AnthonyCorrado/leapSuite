@@ -22,8 +22,12 @@
             'Content-Type': 'application/json'
           },
           data: {
-            "to": request.phoneNumber,
-            "payload": message
+            "toName": request.toName,
+            "toEmail": request.toEmail,
+            "fromName": request.fromName,
+            "fromEmail": request.fromEmail,
+            "subject": message.subject,
+            "payload": message.payload
           }
         }
         return $http(req)

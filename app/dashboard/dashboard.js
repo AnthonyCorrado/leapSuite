@@ -5,12 +5,14 @@
     .module('leapSuiteApp.dashboard')
     .controller('Dashboard', Dashboard);
 
-  Dashboard.$inject = ['ContactsService'];
+  Dashboard.$inject = ['ContactsService', 'SmsService', 'EmailService'];
 
-  function Dashboard(ContactsService) {
+  function Dashboard(ContactsService, SmsService, EmailService) {
     var vm = this;
+    vm.isShown = false;
     vm.contacts = [];
     vm.message = "you up to grab a drink for happy hour? If so, let's go grab two for ones";
+    var currentUser = {};
     var currentAction = '';
     var currentContact = {};
     var currentMessageBody = '';
@@ -20,6 +22,22 @@
         "action": currentAction,
         "contact": currentContact,
         "message": currentMessageBody
+      }
+      var emailSendData = {
+        "toName": currentContact.name,
+        "toEmail": currentContact.email,
+        "fromName": currentUser.name || "Anthony",
+        "fromEmail": currentUser.email || "anthony@htmlfusion.com"
+      }
+      var emailContent = {
+        "subject": "LeapSuite Message Received!",
+        "payload": currentMessageBody
+      }
+
+      if (currentAction === 'TEXT') {
+        SmsService.createSms(currentContact, currentMessageBody);
+      } else if (currentAction === 'EMAIL') {
+        EmailService.createEmail(emailSendData, emailContent);
       }
       console.log('readyMessage', readyMessage);
     }
