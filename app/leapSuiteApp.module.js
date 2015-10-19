@@ -17,7 +17,8 @@
     'leapSuiteApp.contacts',
     'leapSuiteApp.sms',
     'leapSuiteApp.speech',
-    'leapSuiteApp.email'
+    'leapSuiteApp.email',
+    'leapSuiteApp.rtm'
   ]);
 
 })();

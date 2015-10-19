@@ -1,8 +1,9 @@
 <div class="margin-top"></div>
   <div class="action-bar shadow">
     <div class="action-message-box font-med font-secondary pad-all">
-      <input type="text" placeholder="temp for speech input" ng-model="message" ng-change="messageBody({value: message})">
-
+      <div ng-model="message" ng-change="messageBody({value: message})">
+        {{message}}
+      </div>
     </div>
   </div>
 </div>

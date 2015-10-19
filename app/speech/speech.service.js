@@ -5,9 +5,9 @@
     .module('leapSuiteApp.speech')
     .factory('SpeechService', SpeechService);
 
-    SpeechService.$inject = [];
+    SpeechService.$inject = ['$q'];
 
-    function SpeechService() {
+    function SpeechService($q) {
 
       var service = {
           startRecognizer: startRecognizer
@@ -19,7 +19,7 @@
         recognition.start();
         recognition.onresult = function(event) {
           console.log(event.results[0][0].transcript);
-          return event.results[0][0].transcript;
+          return $q.when(event.results[0][0].transcript);
         };
       };
 

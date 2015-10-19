@@ -5,23 +5,28 @@
     .module('leapSuiteApp.dashboard')
     .controller('Dashboard', Dashboard);
 
-  Dashboard.$inject = ['ContactsService', 'SmsService', 'EmailService'];
+  Dashboard.$inject = [
+    '$scope',
+    'ContactsService',
+    'SmsService',
+    'EmailService',
+    'RtmService'
+  ];
 
-  function Dashboard(ContactsService, SmsService, EmailService) {
+  function Dashboard($scope, ContactsService, SmsService, EmailService, RtmService) {
     var vm = this;
     vm.isShown = false;
     vm.contacts = [];
-    vm.message = "you up to grab a drink for happy hour? If so, let's go grab two for ones";
+    vm.message = "test";
     var currentUser = {};
     var currentAction = '';
     var currentContact = {};
-    var currentMessageBody = '';
 
     vm.sendMessage = function() {
       var readyMessage = {
         "action": currentAction,
         "contact": currentContact,
-        "message": currentMessageBody
+        "message": vm.message
       }
       var emailSendData = {
         "toName": currentContact.name,
@@ -31,15 +36,18 @@
       }
       var emailContent = {
         "subject": "LeapSuite Message Received!",
-        "payload": currentMessageBody
+        "payload": vm.message
       }
 
       if (currentAction === 'TEXT') {
-        SmsService.createSms(currentContact, currentMessageBody);
+        SmsService.createSms(currentContact, vm.message);
       } else if (currentAction === 'EMAIL') {
         EmailService.createEmail(emailSendData, emailContent);
+      } else if (currentAction === 'SLACK') {
+        RtmService.createRtm(currentContact, vm.message)
       }
       console.log('readyMessage', readyMessage);
+      clearSelections();
     }
 
     vm.selectedAction = function(value) {
@@ -49,7 +57,24 @@
       currentContact = value;
     }
     vm.hasMessageBody = function(value) {
-      currentMessageBody = value;
+      vm.message = value;
+    }
+
+    vm.clearSelections = function() {
+      vm.message = "";
+      vm.clearAction();
+      currentContact: null;
+    }
+
+    // will refactor into service
+    vm.startSpeechRec = function() {
+      var recognition = new webkitSpeechRecognition();
+      recognition.start();
+      recognition.onresult = function(event) {
+        console.log(event.results[0][0].transcript);
+        vm.message = event.results[0][0].transcript;
+        $scope.$apply();
+      };
     }
 
     activate();
