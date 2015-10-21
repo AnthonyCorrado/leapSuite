@@ -5,9 +5,9 @@
     .module('leapSuiteApp.actions')
     .controller('Actions', Actions);
 
-    Actions.$inject = [];
+    Actions.$inject = ['$rootScope'];
 
-    function Actions() {
+    function Actions($rootScope) {
       var vm = this;
 
       activate();

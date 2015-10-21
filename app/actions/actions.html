@@ -1,7 +1,7 @@
 <div class="margin-top"></div>
   <div class="action-bar shadow">
     <ul class="action-list font-med">
-      <li ng-repeat="action in actions" ng-click="selectAction({value: action}); $parent.selectedItem = $index;" ng-class="{'active-item': ($parent.selectedItem == $index)}">
+      <li ng-repeat="action in actions" ng-class="{'active-item': (actionItem == $index)}">
         {{action}}
       </li>
     </ul>

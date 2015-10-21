@@ -11,7 +11,11 @@
       var directive = {
         scope: {
           actions: '=',
-          selectAction: '&'
+          selectAction: '&',
+          actionItem: '='
+        },
+        link: function (scope, element, attrs) {
+          scope.actionItem // contains the number
         },
         restrict: 'A',
         templateUrl: 'app/actions/actions.html'

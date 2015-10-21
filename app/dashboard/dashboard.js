@@ -7,13 +7,15 @@
 
   Dashboard.$inject = [
     '$scope',
+    '$rootScope',
     'ContactsService',
     'SmsService',
     'EmailService',
-    'RtmService'
+    'RtmService',
+    'LeapService'
   ];
 
-  function Dashboard($scope, ContactsService, SmsService, EmailService, RtmService) {
+  function Dashboard($scope, $rootScope, ContactsService, SmsService, EmailService, RtmService, LeapService) {
     var vm = this;
     vm.isShown = false;
     vm.contacts = [];
@@ -24,30 +26,29 @@
 
     vm.sendMessage = function() {
       var readyMessage = {
-        "action": currentAction,
+        "action": $rootScope.actionItem,
         "contact": currentContact,
         "message": vm.message
       }
       var emailSendData = {
         "toName": currentContact.name,
         "toEmail": currentContact.email,
-        "fromName": currentUser.name || "Anthony",
-        "fromEmail": currentUser.email || "anthony@htmlfusion.com"
+        "fromName": currentUser.name
+        "fromEmail": currentUser.email
       }
       var emailContent = {
         "subject": "LeapSuite Message Received!",
         "payload": vm.message
       }
 
-      if (currentAction === 'TEXT') {
+      if ($rootScope.actionItem === 0) {
         SmsService.createSms(currentContact, vm.message);
-      } else if (currentAction === 'EMAIL') {
+      } else if ($rootScope.actionItem === 1) {
         EmailService.createEmail(emailSendData, emailContent);
-      } else if (currentAction === 'SLACK') {
+      } else if ($rootScope.actionItem === 2) {
         RtmService.createRtm(currentContact, vm.message)
       }
       console.log('readyMessage', readyMessage);
-      clearSelections();
     }
 
     vm.selectedAction = function(value) {
@@ -58,12 +59,6 @@
     }
     vm.hasMessageBody = function(value) {
       vm.message = value;
-    }
-
-    vm.clearSelections = function() {
-      vm.message = "";
-      vm.clearAction();
-      currentContact: null;
     }
 
     // will refactor into service
@@ -81,6 +76,7 @@
 
     function activate() {
       vm.actions = ['TEXT', 'EMAIL', 'SLACK', 'OTHER'];
+      LeapService.startLeapFrames();
       return ContactsService.getAllContacts().then(function(response) {
         vm.contacts = response.data.contacts;
       })
