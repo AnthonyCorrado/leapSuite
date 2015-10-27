@@ -20,6 +20,7 @@
           .catch(getContactsFailed);
 
         function getContactsComplete(response) {
+          console.log(response.data.contacts.length);
           return response;
         }
 

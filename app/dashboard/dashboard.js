@@ -22,19 +22,20 @@
     vm.message = "test";
     var currentUser = {};
     var currentAction = '';
-    var currentContact = {};
 
     vm.sendMessage = function() {
       var readyMessage = {
         "action": $rootScope.actionItem,
-        "contact": currentContact,
+        "contact": vm.contacts[$rootScope.rotationIndex],
         "message": vm.message
       }
       var emailSendData = {
-        "toName": currentContact.name,
-        "toEmail": currentContact.email,
-        "fromName": currentUser.name
-        "fromEmail": currentUser.email
+        "toName": vm.contacts[$rootScope.rotationIndex].name,
+        "toEmail": vm.contacts[$rootScope.rotationIndex].email,
+        // "fromName": currentUser.name,
+        // "fromEmail": currentUser.email
+        "fromName": '',
+        "fromEmail": ''
       }
       var emailContent = {
         "subject": "LeapSuite Message Received!",
@@ -42,11 +43,11 @@
       }
 
       if ($rootScope.actionItem === 0) {
-        SmsService.createSms(currentContact, vm.message);
+        SmsService.createSms(vm.contacts[$rootScope.rotationIndex], vm.message);
       } else if ($rootScope.actionItem === 1) {
         EmailService.createEmail(emailSendData, emailContent);
       } else if ($rootScope.actionItem === 2) {
-        RtmService.createRtm(currentContact, vm.message)
+        RtmService.createRtm(vm.contacts[$rootScope.rotationIndex], vm.message)
       }
       console.log('readyMessage', readyMessage);
     }
@@ -55,7 +56,7 @@
       currentAction = value;
     }
     vm.selectedContact = function(value) {
-      currentContact = value;
+      vm.contacts[$rootScope.rotationIndex] = value;
     }
     vm.hasMessageBody = function(value) {
       vm.message = value;

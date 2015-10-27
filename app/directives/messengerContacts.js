@@ -11,7 +11,11 @@
       var directive = {
         scope: {
           contacts: '=',
-          selectContact: '&'
+          selectContact: '&',
+          rotationIndex: '='
+        },
+        link: function (scope, element, attrs) {
+          // scope.rotationIndex
         },
         restrict: 'A',
         templateUrl: 'app/contacts/contacts.html'
