@@ -1,5 +1,6 @@
 <div class="margin-top"></div>
   <div class="action-bar shadow">
+    <div ng-show="isRecording" class="record-button ng-cloak"></div>
     <div class="action-message-box font-med font-secondary pad-all">
       <div ng-model="message" ng-change="messageBody({value: message})">
         {{message}}

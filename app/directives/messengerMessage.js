@@ -11,7 +11,8 @@
       var directive = {
         scope: {
           message: '=',
-          messageBody: '&'
+          messageBody: '&',
+          isRecording: '='
         },
         restrict: 'A',
         templateUrl: 'app/message/message.html'

@@ -12,14 +12,16 @@
     'SmsService',
     'EmailService',
     'RtmService',
-    'LeapService'
+    'LeapService',
+    'SpeechService'
   ];
 
-  function Dashboard($scope, $rootScope, ContactsService, SmsService, EmailService, RtmService, LeapService) {
+  function Dashboard($scope, $rootScope, ContactsService, SmsService, EmailService, RtmService, LeapService, SpeechService) {
     var vm = this;
     vm.isShown = false;
     vm.contacts = [];
     vm.message = "test";
+    vm.isRecording = false;
     var currentUser = {};
     var currentAction = '';
 
@@ -28,7 +30,7 @@
         "action": $rootScope.actionItem,
         "contact": vm.contacts[$rootScope.rotationIndex],
         "message": vm.message
-      }
+      };
       var emailSendData = {
         "toName": vm.contacts[$rootScope.rotationIndex].name,
         "toEmail": vm.contacts[$rootScope.rotationIndex].email,
@@ -36,11 +38,11 @@
         // "fromEmail": currentUser.email
         "fromName": '',
         "fromEmail": ''
-      }
+      };
       var emailContent = {
         "subject": "LeapSuite Message Received!",
         "payload": vm.message
-      }
+      };
 
       if ($rootScope.actionItem === 0) {
         SmsService.createSms(vm.contacts[$rootScope.rotationIndex], vm.message);
@@ -50,28 +52,32 @@
         RtmService.createRtm(vm.contacts[$rootScope.rotationIndex], vm.message)
       }
       console.log('readyMessage', readyMessage);
-    }
+    };
 
+    // test actions in place of motion gestures -----
     vm.selectedAction = function(value) {
       currentAction = value;
-    }
+    };
     vm.selectedContact = function(value) {
       vm.contacts[$rootScope.rotationIndex] = value;
-    }
+    };
     vm.hasMessageBody = function(value) {
       vm.message = value;
-    }
+    };
+    // -----------------
 
-    // will refactor into service
-    vm.startSpeechRec = function() {
-      var recognition = new webkitSpeechRecognition();
-      recognition.start();
-      recognition.onresult = function(event) {
-        console.log(event.results[0][0].transcript);
-        vm.message = event.results[0][0].transcript;
-        $scope.$apply();
-      };
-    }
+    $scope.$on('swipeDownTriggered', function(event, data) {
+      vm.isRecording = true;
+      $scope.$apply();
+      startSpeechRec();
+    })
+
+    function startSpeechRec() {
+      SpeechService.startRecognizer().then(function(response) {
+        vm.message = response; 
+        vm.isRecording = false;
+      });
+    };
 
     activate();
 

@@ -1,6 +1,6 @@
 <div class="margin-top"></div>
   <div class="contacts-container">
-    <div class="contacts-box" ng-style="{'width': (contacts.length * 190) + 'px'}">
+    <div class="contacts-box" ng-style="{'width': (contacts.length * 190) + 'px', 'margin-left': (rotationIndex * -190 + 'px')}">
       <div ng-repeat="contact in contacts">
         <div class="image-box" ng-class="{'active-contact': (rotationIndex == $index)}">
           <img ng-src="{{contact.avatar}}" />

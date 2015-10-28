@@ -10,6 +10,7 @@
     function LeapService($rootScope) {
       var rotationCounter = 0;
       $rootScope.rotationIndex = 0;
+      var isLocked = false;
 
       var service = {
           startLeapFrames: startLeapFrames
@@ -34,17 +35,20 @@
       // palm, hand, and finger tracking needs go here
       function allCoordTracking (frame) {
         frame.hands.forEach(function(hand, index) {
+          // console.log('hand obj', frame.fingers);
           palmPosition(hand, index);
         });
       }
 
       function determineGesture (frame) {
         frame.gestures.forEach(function(gesture) {
+          console.log(gesture.type);
           if (gesture.type == "circle") {
             circleGesture(frame, gesture);
-          }
-          if (gesture.type == 'keyTap') {
+          } else if (gesture.type == 'keyTap') {
             keyTapGesture(frame, gesture);
+          } else if (gesture.type == 'swipe') {
+            swipeGesture(frame, gesture);
           }
         });
       }
@@ -55,13 +59,49 @@
       }
 
       function keyTapGesture (frame, gesture) {
-        determineCircleRotation(frame, gesture);
+        console.log('keyTap has been triggered');
+        // $rootScope.keyTapFired = frame.id;
       }
 
+      function swipeGesture (frame, gesture) {
+        var isHorizontal = Math.abs(gesture.direction[0]) > Math.abs(gesture.direction[1]);
+        if (isHorizontal) {
+          if (gesture.direction[0] > 0) {
+            swipedRight();
+          } else {
+            swipedLeft();
+          }
+        } else {
+          if (gesture.direction[1] > 0) {
+            swipedUp();
+          } else {
+            swipedDown(frame.id);
+          }
+        }
+        console.log('Swipe has been triggered');
+      }
 
+      function swipedRight() {
+        console.log('swiped right');
+      }
+      function swipedLeft() {
+        console.log('swiped left');
+      }
+      function swipedUp() {
+        console.log('swiped up');
+      }
+      function swipedDown(id) {
+        console.log('swiped down');
+        $rootScope.$broadcast('swipeDownTriggered', {
+        });
+        isLocked = true;
+      }
       // tracks X, Y, Z position of the hand/palm
       function palmPosition(hand, index) {
-        lateralTracking(hand.palmPosition[0]);
+        if (!isLocked) {
+          lateralTracking(hand.palmPosition[0]);
+        }
+        // console.log(hand);
       };
       
       // selects message action by hand position along the x axis

@@ -6,6 +6,7 @@
     'ui.router',
     'ngTouch',
     'angular-carousel',
+    'ngAnimate',
 
     // features
     'leapSuiteApp.layout',
