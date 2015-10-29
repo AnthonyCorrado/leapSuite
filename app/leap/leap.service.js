@@ -49,12 +49,15 @@
 
       function closedHandGesture(hand) {
         // hand closed counter. After roughly 1/2 second the open hand to send gesture will be enabled
-        if (hand.grabStrength == 1) {
+        if (hand.grabStrength == 1 && closedHandTimer < 25) {
           closedHandTimer++;
-          if (closedHandTimer > 25) {
+          $rootScope.$broadcast('primerCountChanged', {
+              primerCounter: closedHandTimer
+            });
+          if (closedHandTimer >= 25) {
             sendIsPrimed = true;
           }
-          // console.log('closed hand');
+          // hand is open if grabStrength is 0
         } else if (hand.grabStrength === 0) {
           // if sendIsPrimed is active -> sends message. Otherwise, timer is reset.
           if (sendIsPrimed) {
@@ -63,6 +66,9 @@
             sendIsPrimed = false;
           }
           closedHandTimer = 0;
+          $rootScope.$broadcast('primerCountChanged', {
+              primerCounter: closedHandTimer
+            });
           // console.log('opened hand');
         }
       }

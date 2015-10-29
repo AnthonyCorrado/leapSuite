@@ -21,6 +21,7 @@
     vm.isShown = false;
     vm.contacts = [];
     vm.isRecording = false;
+    vm.primerCount = 0;
     var currentUser = {};
     var currentAction = '';
 
@@ -74,6 +75,12 @@
 
     $scope.$on('sendMessageTriggered', function(event, data) {
       sendMessage();
+    });
+
+    $scope.$on('primerCountChanged', function(event, data) {
+      console.log(data.primerCounter);
+      vm.primerCount = data.primerCounter * 4;
+      $scope.$apply();
     });
 
     function startSpeechRec() {

@@ -220,6 +220,14 @@ img {
   background-color: $secondary-highlight;
 }
 
+.progress-bar-container {
+  width: 10px;
+  height: 100%;
+  background-color: $secondary-highlight;
+  float: right;
+  border-radius: 0 1px 1px 0;
+}
+
 // animation and transition classes 
 
 // .record-button.ng-hide {

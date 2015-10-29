@@ -12,7 +12,8 @@
         scope: {
           message: '=',
           messageBody: '&',
-          isRecording: '='
+          isRecording: '=',
+          primedStatus: '='
         },
         restrict: 'A',
         templateUrl: 'app/message/message.html'
