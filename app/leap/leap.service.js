@@ -9,8 +9,11 @@
 
     function LeapService($rootScope) {
       var rotationCounter = 0;
-      $rootScope.rotationIndex = 0;
       var isLocked = false;
+      var closedHandTimer = 0;
+      var sendIsPrimed = false;
+      $rootScope.rotationIndex = 0;
+        
 
       var service = {
           startLeapFrames: startLeapFrames
@@ -35,9 +38,33 @@
       // palm, hand, and finger tracking needs go here
       function allCoordTracking (frame) {
         frame.hands.forEach(function(hand, index) {
+          console.log('closed hand count: ' + closedHandTimer);
           // console.log('hand obj', frame.fingers);
           palmPosition(hand, index);
+          if (isLocked) {
+            closedHandGesture(hand);
+          }
         });
+      }
+
+      function closedHandGesture(hand) {
+        // hand closed counter. After roughly 1/2 second the open hand to send gesture will be enabled
+        if (hand.grabStrength == 1) {
+          closedHandTimer++;
+          if (closedHandTimer > 25) {
+            sendIsPrimed = true;
+          }
+          // console.log('closed hand');
+        } else if (hand.grabStrength === 0) {
+          // if sendIsPrimed is active -> sends message. Otherwise, timer is reset.
+          if (sendIsPrimed) {
+            $rootScope.$broadcast('sendMessageTriggered', {
+            });
+            sendIsPrimed = false;
+          }
+          closedHandTimer = 0;
+          // console.log('opened hand');
+        }
       }
 
       function determineGesture (frame) {
@@ -55,7 +82,9 @@
 
       // preconfigured leap gestures get accessed here
       function circleGesture (frame, gesture) {
-        determineCircleRotation(frame, gesture);
+        if (!isLocked) {
+          determineCircleRotation(frame, gesture);
+        }
       }
 
       function keyTapGesture (frame, gesture) {
@@ -109,16 +138,16 @@
         var actionItem = '';
 
         if (xPosition > 100) {
-          console.log('OTHER');
+          // console.log('OTHER');
           actionItem = 3;
         } else if (xPosition > 0 && xPosition < 100) {
-          console.log('SLACK');
+          // console.log('SLACK');
           actionItem = 2;
         } else if (xPosition > -100 && xPosition < 0) {
-          console.log('EMAIL');
+          // console.log('EMAIL');
           actionItem = 1;
         } else if (xPosition < -100) {
-          console.log('TEXT');
+          // console.log('TEXT');
           actionItem = 0;
         }
         $rootScope.actionItem = actionItem;

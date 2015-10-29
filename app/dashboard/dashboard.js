@@ -20,12 +20,12 @@
     var vm = this;
     vm.isShown = false;
     vm.contacts = [];
-    vm.message = "test";
     vm.isRecording = false;
     var currentUser = {};
     var currentAction = '';
 
-    vm.sendMessage = function() {
+    function sendMessage() {
+      console.log('message send action triggered!!');
       var readyMessage = {
         "action": $rootScope.actionItem,
         "contact": vm.contacts[$rootScope.rotationIndex],
@@ -70,7 +70,11 @@
       vm.isRecording = true;
       $scope.$apply();
       startSpeechRec();
-    })
+    });
+
+    $scope.$on('sendMessageTriggered', function(event, data) {
+      sendMessage();
+    });
 
     function startSpeechRec() {
       SpeechService.startRecognizer().then(function(response) {
