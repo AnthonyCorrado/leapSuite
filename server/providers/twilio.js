@@ -1,5 +1,5 @@
 var twilio = require('twilio');
-var sms = require('../config').test_sms;
+var sms = require('../config').sms;
  
 exports.sendSMS = function(toNumber, body) {
     var client = new twilio.RestClient(sms.TWILIO_ACCOUNT_SID, sms.TWILIO_AUTH_TOKEN);

@@ -8,11 +8,11 @@
     LeapService.$inject = ['$rootScope'];
 
     function LeapService($rootScope) {
-      var rotationCounter = 0;
+      var rotationCounter = 24;
       var isLocked = false;
       var closedHandTimer = 0;
       var sendIsPrimed = false;
-      $rootScope.rotationIndex = 0;
+      $rootScope.rotationIndex = 1;
         
 
       var service = {
@@ -22,11 +22,9 @@
 
       // fires up leap's tracking loop
       function startLeapFrames() {
-        // $rootScope.rotationIndex = 0;
-
         Leap.loop({enableGestures: true}, function(frame) {
           // throttle function calls
-          if (frame.id % 2 === 0) {
+          if (frame.id % 3 === 0) {
             allCoordTracking(frame);
             if (frame.valid && frame.gestures.length > 0) {
               determineGesture(frame) ;
@@ -38,8 +36,6 @@
       // palm, hand, and finger tracking needs go here
       function allCoordTracking (frame) {
         frame.hands.forEach(function(hand, index) {
-          console.log('closed hand count: ' + closedHandTimer);
-          // console.log('hand obj', frame.fingers);
           palmPosition(hand, index);
           if (isLocked) {
             closedHandGesture(hand);
@@ -64,18 +60,17 @@
             $rootScope.$broadcast('sendMessageTriggered', {
             });
             sendIsPrimed = false;
+            isLocked = false;
           }
           closedHandTimer = 0;
           $rootScope.$broadcast('primerCountChanged', {
               primerCounter: closedHandTimer
             });
-          // console.log('opened hand');
         }
       }
 
       function determineGesture (frame) {
         frame.gestures.forEach(function(gesture) {
-          console.log(gesture.type);
           if (gesture.type == "circle") {
             circleGesture(frame, gesture);
           } else if (gesture.type == 'keyTap') {
@@ -94,8 +89,6 @@
       }
 
       function keyTapGesture (frame, gesture) {
-        console.log('keyTap has been triggered');
-        // $rootScope.keyTapFired = frame.id;
       }
 
       function swipeGesture (frame, gesture) {
@@ -126,7 +119,6 @@
         console.log('swiped up');
       }
       function swipedDown(id) {
-        console.log('swiped down');
         $rootScope.$broadcast('swipeDownTriggered', {
         });
         isLocked = true;
@@ -170,7 +162,6 @@
         circle.pointable = frame.pointable(circle.pointableIds[0]);
 
         if(circle.state == 'start') {
-          console.log('circle has started');
         } else if (circle.state == 'update') {
           direction = circle.pointable.direction;
           // Check if pointable exists
@@ -184,8 +175,8 @@
             }
           // adjust integer to set sensitivity of rotational selection
           $rootScope.rotationIndex = (Math.floor($rootScope.rotationIndex / 12));
+          console.log('rotationalIndex', $rootScope.rotationIndex);
           $rootScope.$apply();
-          console.log('this is rootScope', $rootScope.rotationIndex);
           }
         }
       }

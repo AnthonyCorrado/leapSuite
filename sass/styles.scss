@@ -75,6 +75,9 @@ $rounded-more: 15px;
   -moz-box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
   box-shadow: 4px 4px 2px 0px rgba(0,0,0,0.75);
 }
+.text-shadow {
+  text-shadow: 1px 1px 1px rgba(207, 72, 88, 0.5);
+}
 
 html, body {
   width: 100%;
@@ -239,6 +242,10 @@ img {
 }
 
 // animation and transition classes 
+
+.animate {
+  transition:all linear 0.25s;
+}
 
 // .record-button.ng-hide {
 //   opacity: 0;

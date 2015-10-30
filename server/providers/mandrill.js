@@ -1,5 +1,5 @@
 var mandrill = require('mandrill-api/mandrill');
-var apiKey = require('../config').test_mail_client.MANDRILL_KEY; 
+var apiKey = require('../config').mail_client.MANDRILL_KEY; 
 var mandrill_client = new mandrill.Mandrill(apiKey);
 
 exports.sendEmail = function(to, from, content, res) {
