@@ -1,10 +1,11 @@
 <div class="margin-top"></div>
   <div class="action-bar shadow">
     <div ng-show="isRecording" class="record-button ng-cloak"></div>
-    <div class="progress-bar-container" ng-style="{'height': (primedStatus + '%')}"></div>
-    <div class="action-message-box font-med font-secondary pad-all">
+    <div class="progress-bar-container-right" ng-style="{'height': (primedStatus + '%')}"></div>
+    <div class="progress-bar-container-left" ng-style="{'height': (primedStatus + '%')}"></div>
+    <div class="action-message-box font-med font-secondary pad-all" ng-class="{'message-active': isPrimed}">
       <div ng-model="message" ng-change="messageBody({value: message})">
-        {{message}} pS:{{primedStatus}}
+        {{message}}
       </div>
     </div>
   </div>

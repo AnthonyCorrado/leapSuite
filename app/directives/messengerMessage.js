@@ -13,7 +13,8 @@
           message: '=',
           messageBody: '&',
           isRecording: '=',
-          primedStatus: '='
+          primedStatus: '=',
+          isPrimed: '='
         },
         restrict: 'A',
         templateUrl: 'app/message/message.html'

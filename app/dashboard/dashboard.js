@@ -19,6 +19,7 @@
   function Dashboard($scope, $rootScope, ContactsService, SmsService, EmailService, RtmService, LeapService, SpeechService) {
     var vm = this;
     vm.isShown = false;
+    vm.isPrimed = false;
     vm.contacts = [];
     vm.isRecording = false;
     vm.primerCount = 0;
@@ -75,10 +76,13 @@
 
     $scope.$on('sendMessageTriggered', function(event, data) {
       sendMessage();
+      vm.isPrimed = false;
     });
 
     $scope.$on('primerCountChanged', function(event, data) {
-      console.log(data.primerCounter);
+      if (data.primerCounter >= 25) {
+        vm.isPrimed = true;
+      }
       vm.primerCount = data.primerCounter * 4;
       $scope.$apply();
     });

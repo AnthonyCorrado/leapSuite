@@ -220,12 +220,22 @@ img {
   background-color: $secondary-highlight;
 }
 
-.progress-bar-container {
+.progress-bar-container-right {
   width: 10px;
   height: 100%;
   background-color: $secondary-highlight;
   float: right;
   border-radius: 0 1px 1px 0;
+}
+.progress-bar-container-left {
+  width: 10px;
+  height: 100%;
+  background-color: $secondary-highlight;
+  float: left;
+  border-radius: 0 1px 1px 0;
+}
+.message-active {
+  border-bottom: 10px solid $secondary-highlight;
 }
 
 // animation and transition classes 
